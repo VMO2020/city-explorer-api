@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './App.css';
-// import city from './images/city.png';
+import { Map } from './components/map/Map';
+import { Weather } from './components/weather/weather';
 
 function App() {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [location, setLocation] = useState({});
 	const [locationMap, setLocationMap] = useState('');
+	const [locationWeather, setLocationWeather] = useState('');
+	const [locationWeatherData, setLocationWeatherData] = useState('');
 	const [reset, setReset] = useState(false);
 	const [errorMsg, setErrorMsg] = useState('');
 
@@ -19,6 +22,8 @@ function App() {
 		setSearchQuery('');
 		setLocation({});
 		setLocationMap('');
+		setLocationWeather('');
+		setLocationWeatherData('');
 		setErrorMsg('');
 		setReset(false);
 	};
@@ -32,6 +37,7 @@ function App() {
 			// console.log(data.data[0]);
 			setLocation(data.data[0]);
 			getMap(data);
+			getWeather(data);
 			setErrorMsg('');
 			setReset(true);
 		} catch (error) {
@@ -46,12 +52,26 @@ function App() {
 			// console.log(data.data[0]);
 			let lat = data.data[0].lat;
 			let lon = data.data[0].lon;
-			// console.log(lat, lon);
 
 			const API2 = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_ACCESS_TOKEN}&center=${lat},${lon}&size=600x600&zoom=12&path=fillcolor:%2390EE90|weight:2|color:blue|17.452945,78.380055|17.452765,78.382026|17.452020,78.381375|17.452045,78.380846|17.452945,78.380055`;
 			const map = await axios.get(API2);
 			// console.log(map.config.url);
 			setLocationMap(map.config.url);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const getWeather = async (data) => {
+		try {
+			let city = data.data[0].display_name.split(',')[0];
+			console.log(city);
+			const API3 = `http://localhost:8080/weather?city=${city}`;
+			const weather = await axios.get(API3);
+			// console.log(weather.data.location);
+			setLocationWeatherData(weather.data.location);
+			// console.log(weather.data.current);
+			setLocationWeather(weather.data.current);
 		} catch (error) {
 			console.error(error);
 		}
@@ -72,6 +92,7 @@ function App() {
 				<button onClick={getLocation}>Explore</button>
 			)}
 			<h2>{location.display_name}</h2>
+
 			{location.lat && (
 				<div className="data-container">
 					<p>
@@ -85,7 +106,14 @@ function App() {
 				</div>
 			)}
 			<p style={{ color: 'red' }}>{errorMsg}</p>
-			{locationMap && <img src={locationMap} alt="map" />}
+
+			<Map locationMap={locationMap} />
+			{locationWeatherData && (
+				<h3>
+					Date/Time: <span>{locationWeatherData.localtime}</span>
+				</h3>
+			)}
+			<Weather locationWeather={locationWeather} />
 		</div>
 	);
 }

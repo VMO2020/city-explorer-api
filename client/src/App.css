@@ -14,10 +14,22 @@
 h1 {
 	font-size: 2.5rem;
 }
+
 input,
 button,
 h2 {
 	font-size: 2rem;
+}
+
+h3 {
+	font-size: 1.5rem;
+	color: gray;
+}
+
+h3 span {
+	font-style: italic;
+	font-weight: 700;
+	color: black;
 }
 
 button {
@@ -26,17 +38,9 @@ button {
 
 p {
 	font-size: 1.5rem;
+	margin: 0.5rem;
 }
 
 p span {
 	font-weight: 700;
-}
-
-img {
-	width: 600px;
-	max-width: 100%;
-	height: 600px;
-	object-fit: contain;
-	margin-top: 1rem;
-	box-shadow: 3px 3px 5px grey;
 }

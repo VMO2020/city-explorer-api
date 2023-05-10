@@ -4,7 +4,8 @@
 	"description": "City Explorer API",
 	"main": "index.js",
 	"scripts": {
-		"start": "node server"
+		"start": "node server",
+		"server": "nodemon server"
 	},
 	"keywords": [],
 	"author": "VMOG",
