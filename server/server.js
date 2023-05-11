@@ -19,7 +19,9 @@ const API_KEY = process.env.API_KEY;
 
 // This is a route. if you turn the server on and go to http://localhost:8080
 app.get('/', (request, response) => {
-	response.json('Hello from the City Weather Explorer API home route...');
+	response
+		.status(200)
+		.json('Hello from the City Weather Explorer API home route...');
 });
 
 app.get('/weather', async (req, res) => {
