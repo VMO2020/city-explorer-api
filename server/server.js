@@ -28,7 +28,7 @@ app.get('/weather', async (req, res) => {
 
 		// Make the fetch request to the API
 		const response = await fetch(
-			`http://api.weatherapi.com/v1/current.json?key=52d59dfd83f840c9bb0160623231005&q=${city}&aqi=no`
+			`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}&aqi=no`
 		);
 		const data = await response.json();
 
@@ -41,4 +41,4 @@ app.get('/weather', async (req, res) => {
 });
 
 // Run the server
-app.listen(PORT, () => console.log(`Running on ${PORT}`));
+app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));

@@ -1,5 +1,10 @@
 # City Explorer API
 
+## RUN
+
+client: `npm start`
+server: `npm run server`
+
 **Author**: Victor M. Ottati
 
 **Version**: 1.0.0
