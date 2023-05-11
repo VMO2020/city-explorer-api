@@ -21,17 +21,6 @@ h2 {
 	font-size: 2rem;
 }
 
-h3 {
-	font-size: 1.5rem;
-	color: gray;
-}
-
-h3 span {
-	font-style: italic;
-	font-weight: 700;
-	color: black;
-}
-
 button {
 	cursor: pointer;
 }

@@ -108,12 +108,10 @@ function App() {
 			<p style={{ color: 'red' }}>{errorMsg}</p>
 
 			<Map locationMap={locationMap} />
-			{locationWeatherData && (
-				<h3>
-					Date/Time: <span>{locationWeatherData.localtime}</span>
-				</h3>
-			)}
-			<Weather locationWeather={locationWeather} />
+			<Weather
+				locationWeather={locationWeather}
+				locationWeatherData={locationWeatherData}
+			/>
 		</div>
 	);
 }

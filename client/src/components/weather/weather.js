@@ -1,9 +1,14 @@
 import React from 'react';
 import './weather.css';
 
-export const Weather = ({ locationWeather }) => {
+export const Weather = ({ locationWeather, locationWeatherData }) => {
 	return (
 		<>
+			{locationWeatherData && (
+				<h3>
+					Date/Time: <span>{locationWeatherData.localtime}</span>
+				</h3>
+			)}
 			{locationWeather && (
 				<p>
 					Weather condition: <span>{locationWeather.condition.text}</span>
